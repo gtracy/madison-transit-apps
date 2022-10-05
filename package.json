@@ -1,0 +1,24 @@
+{
+  "name": "madison-transit-apps",
+  "version": "0.1.0",
+  "description": "sample apps built on top of the Madison Transit API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gtracy/madison-transit-apps.git"
+  },
+  "author": "Greg Tracy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gtracy/madison-transit-apps/issues"
+  },
+  "homepage": "https://github.com/gtracy/madison-transit-apps#readme",
+  "dependencies": {
+    "twilio": "^3.82.1"
+  },
+  "devDependencies": {
+  }
+}
