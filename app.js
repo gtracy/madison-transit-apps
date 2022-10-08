@@ -2,6 +2,7 @@
 
 const config = require('./config');
 const express = require('express');
+const bodyParser = require('body-parser');
 const pino = require('pino-http')(config.getLogConfig());
 
 // request logger
@@ -11,11 +12,12 @@ let logger = (req,res,next) => {
 }
 
 const app = express();
+app.use(bodyParser.urlencoded({extended:false}));
 app.use(pino);
 app.use(logger);
 
 // API endpoint registration
-require('./apps/sms')(app);
+require('./apps/message')(app);
 
 // API backstop
 app.get('*', (req,res) => {
