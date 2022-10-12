@@ -5,6 +5,8 @@ const got = require('got');
 require('dotenv').config();
 const config = require('../config');
 const logger = require('pino')(config.getLogConfig());
+const paywall = require('./paywall');
+
 const twilio = require('twilio');
 const client = new twilio(
     process.env.TWILIO_ACCOUNT_SID,
@@ -24,6 +26,7 @@ module.exports = async function(app) {
         logger.info(`Inbound request from ${caller}: ${msg}`);
 
         // scan paywall
+        logger.info('check paywall: ' + await paywall.checkPaywall(caller));
 
         // interrogate the message body to determine what to do
         // - help 

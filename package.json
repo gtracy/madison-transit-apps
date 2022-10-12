@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/gtracy/madison-transit-apps#readme",
   "dependencies": {
+    "aws-sdk": "^2.1231.0",
     "aws-serverless-express": "^3.4.0",
     "body-parser": "^1.20.1",
     "dotenv": "^16.0.3",
