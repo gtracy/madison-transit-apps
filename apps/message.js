@@ -8,11 +8,6 @@ const logger = require('pino')(config.getLogConfig());
 const paywall = require('./paywall');
 
 const twilio = require('twilio');
-const client = new twilio(
-    process.env.TWILIO_ACCOUNT_SID,
-    process.env.TWILIO_AUTH_TOKEN,
-    { logLevel: 'debug' }
-);
 const { MessagingResponse } = require('twilio').twiml;
 
 module.exports = async function(app) {
@@ -26,32 +21,46 @@ module.exports = async function(app) {
         logger.info(`Inbound request from ${caller}: ${msg}`);
 
         // scan paywall
-        logger.info('check paywall: ' + await paywall.checkPaywall(caller));
-
-        // interrogate the message body to determine what to do
-        // - help 
-        // - bus request
-        if( msg.toLowerCase() === "help" ) {
-            response = "Bus arrival requests are either, stopID -or- routeID stopID  Send 'parking' to find parking details";
+        const payment = await paywall.checkPaywall(caller);
+        logger.info(payment);
+        if( payment < 0 ) {
+            // not a valid number
+            twiml.message('');
+            res.type('text/xml').send(twiml.toString());
         } else {
-            const api_response = await got(`https://api.smsmybus.com/v1/getarrivals?key=${process.env.METRO_API_KEY}&stopID=${msg}`).json();
-            if( api_response.status > -1 ) {
-
-                // build a response with the first three results
-                for( let i=0; i < api_response.stop.route.length; i++ ) {
-                    const r = api_response.stop.route[i];
-                    response += `Route ${r.routeID} in ${r.minutes} mins toward ${r.destination.toLowerCase()}  `;
-                    if( i >= 2 ) break;
-                };
-                twiml.message(response);
+            // valid number. 
+            if( payment === 0 ) {
+                // not a subscriber 
+                // welcome them and give them some free requests.
+                logger.info('new user! welcome them.');
+                await paywall.welcomeNewCaller(caller);
             }
+
+            // interrogate the message body to determine what to do
+            // - help 
+            // - bus request
+            if( msg.toLowerCase() === "help" ) {
+                response = "Bus arrival requests are either, stopID -or- routeID stopID  Send 'parking' to find parking details";
+            } else {
+                const api_response = await got(`https://api.smsmybus.com/v1/getarrivals?key=${process.env.METRO_API_KEY}&stopID=${msg}`).json();
+                if( api_response.status > -1 ) {
+
+                    // build a response with the first three results
+                    for( let i=0; i < api_response.stop.route.length; i++ ) {
+                        const r = api_response.stop.route[i];
+                        response += `Route ${r.routeID} in ${r.minutes} mins toward ${r.destination.toLowerCase()}  `;
+                        if( i >= 2 ) break;
+                    };
+                    twiml.message(response);
+                }
+            }
+
+            // log the request
+
+            // respond
+            logger.info('response: ' + response);
+            res.type('text/xml').send(twiml.toString());
         }
-
-        // log the request
-
-        // respond
-        logger.info('response: ' + response);
-        res.type('text/xml').send(twiml.toString());
     });
 
 }
