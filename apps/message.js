@@ -55,12 +55,14 @@ module.exports = async function(app) {
                 }
             }
 
-            // log the request
-
             // respond
             logger.info('response: ' + response);
             res.type('text/xml').send(twiml.toString());
         }
+
+        // log the request with caller, query, results and paywall details
+        paywall.incrementCaller(caller);
+
     });
 
 }

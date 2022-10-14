@@ -73,3 +73,33 @@ module.exports.welcomeNewCaller = async (number) => {
 
     
 }
+
+module.exports.incrementCaller = async(number) => {
+    const docClient = new AWS.DynamoDB.DocumentClient();
+
+    try {
+        await docClient.update({
+            TableName: "SMS_subscribers",
+            Key: {
+                subscriber: number,
+            },
+            UpdateExpression: "SET requests = if_not_exists(requests, :initial) + :num, created= if_not_exists(created, :now)",
+            ExpressionAttributeValues: {
+                ":now": new Date().toISOString(),
+                ":num": 1,
+                ":initial": 0,
+            },
+        },
+            function (error, result) {
+                if( error ) {
+                    logger.error('failed to increment caller: ');
+                    console.dir(error);
+                    logger.error(error);
+                }
+            }
+        );
+    } catch( err ) {
+        logger.error(err);
+    }
+      
+}
