@@ -6,6 +6,7 @@ require('dotenv').config();
 const config = require('../config');
 const logger = require('pino')(config.getLogConfig());
 const paywall = require('./paywall');
+const req_logger = require('./request_log');
 
 const twilio = require('twilio');
 const { MessagingResponse } = require('twilio').twiml;
@@ -60,8 +61,13 @@ module.exports = async function(app) {
             res.type('text/xml').send(twiml.toString());
         }
 
-        // log the request with caller, query, results and paywall details
-        paywall.incrementCaller(caller);
+        // log the request with caller
+        await paywall.incrementCaller(caller);
+        await req_logger.putDynamo({
+            caller : caller,
+            request : msg,
+            results : response
+        });
 
     });
 
