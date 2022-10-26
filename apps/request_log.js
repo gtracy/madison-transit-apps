@@ -22,13 +22,9 @@ module.exports.putDynamo = async (message_attributes) => {
     params.Item.datetime = {S:new Date().toISOString()};
 
     try {
-        logger.info(params);
         let result = await ddb.putItem(params).promise();
-        logger.info(result,"dynamo put success");
-        return;
     } catch (err) {
-        logger.error(err,"dynamo put FAIL");
-        return;
+        logger.error(err,"Dynamo error request_log:putDynamo");
     }
 
 }

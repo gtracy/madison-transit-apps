@@ -52,8 +52,8 @@ module.exports.checkPaywall = async (number) => {
         }
 
     } catch(err) {
-        logger.error(err);
-        return false;
+        logger.error(err,'Dynamo error checkPaywall');
+        return 1;
     }
 
 }
@@ -92,14 +92,12 @@ module.exports.incrementCaller = async(number) => {
         },
             function (error, result) {
                 if( error ) {
-                    logger.error('failed to increment caller: ');
-                    console.dir(error);
-                    logger.error(error);
+                    logger.error(error,'failed to increment caller: ');
                 }
             }
         );
     } catch( err ) {
-        logger.error(err);
+        logger.error(err,'Dynamo Error incrementCaller');
     }
       
 }

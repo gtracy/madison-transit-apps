@@ -1,6 +1,15 @@
 # madison-transit-apps
 Apps built on top of the Madison Transit API
 
-- import service subscribers from GAE
-- add request logging in dynamo
-- implement error handling in the /message endpoint
+
+*** January 31 Deadline ***
+
+- (prod task) import service subscribers from GAE
+  - include new properties
+- (prod task) create request log table
+- (prod task) setup AWS Gateway + Lambda
+
+- build out README content (port from GAE project?)
+
+- port over other apps
+- cleanup smsmybus.com web page and kill off unsupported services
