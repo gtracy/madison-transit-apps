@@ -23,7 +23,7 @@ require('./apps/message')(app);
 app.get('*', (req,res) => {
     res.json({
         "status": -1,
-        "description": 'unsupported endpoint'
+        "description": 'sorry. we do not support this endpoint.'
     });
 });
 

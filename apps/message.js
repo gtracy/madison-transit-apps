@@ -42,7 +42,7 @@ module.exports = async function(app) {
             // - help 
             // - bus request
             if( msg.toLowerCase() === "help" ) {
-                response = "Bus arrival requests are either, stopID -or- routeID stopID  Send 'parking' to find parking details";
+                response = "Bus arrival requests are either, stopID -or- routeID stopID";
             } else {
                 // the bust request is either a single stop ID
                 // or a route ID + stop ID
