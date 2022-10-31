@@ -28,7 +28,7 @@ module.exports = async function(app) {
         if( payment < 0 ) {
             // not a valid number
             twiml.message('');
-            res.type('text/xml').send(twiml.toString());
+            logger.info('response: ' + response);
         } else {
             // valid number. 
             if( payment === 0 ) {
@@ -67,7 +67,6 @@ module.exports = async function(app) {
                 }
 
                 if( api_response ) {
-                    console.dir(api_response);
                     if( api_response.status > -1 ) {
                         if( api_response.stop.route.length === 0 ) {
                             response = 'Snap! No more buses coming that match your request';
@@ -90,7 +89,6 @@ module.exports = async function(app) {
             // respond
             twiml.message(response);
             logger.info('response: ' + response);
-            res.type('text/xml').send(twiml.toString());
         }
 
         // log the request with caller
@@ -100,6 +98,8 @@ module.exports = async function(app) {
             request : msg,
             results : response
         });
+
+        res.type('text/xml').send(twiml.toString());
 
     });
 

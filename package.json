@@ -1,6 +1,6 @@
 {
   "name": "madison-transit-apps",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "sample apps built on top of the Madison Transit API",
   "main": "app.js",
   "scripts": {

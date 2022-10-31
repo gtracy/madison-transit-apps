@@ -12,7 +12,7 @@ module.exports.putDynamo = async (message_attributes) => {
 
     var ddb = new AWS.DynamoDB({apiVersion: '2012-08-10'});
     var params = {
-        TableName: 'request_log',
+        TableName: 'Apps_request_log',
         Item: { }
     };
     for( const key in message_attributes ) {

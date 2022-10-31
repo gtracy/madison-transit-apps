@@ -24,7 +24,7 @@ module.exports.checkPaywall = async (number) => {
         // -1 : invalid number
         //
         if( aws_result.Item ) {
-            console.dir(aws_result.Item);
+            logger.debug(aws_result.Item,"paywall item");
             // check if they've paid and are in their subscription window
             if( aws_result.Item.paid && aws_result.Item.paid.BOOL === true ) {
                 let end_date = new Date(aws_result.Item.expiration.S);
