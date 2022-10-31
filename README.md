@@ -31,12 +31,8 @@ This repo is designed for AWS. It deploys a single NodeJS function to Lambda and
 
 To deploy... just push to AWS lambda with the AWS CLI.
 
-
-
-
 ---
 Are you looking for the Madison Transit API instead? Check these out...
-
-https://api.smsmybus.com
-https://github.com/gtracy/madison-transit-api-gtfs
+* [https://api.smsmybus.com](https://api.smsmybus.com)
+* [https://github.com/gtracy/madison-transit-api-gtfs](https://github.com/gtracy/madison-transit-api-gtfs)
 
