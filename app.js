@@ -4,6 +4,8 @@ const config = require('./config');
 const express = require('express');
 const bodyParser = require('body-parser');
 const pino = require('pino-http')(config.getLogConfig());
+const favicon = require('serve-favicon')
+const path = require('path');
 
 // request logger
 let logger = (req,res,next) => {
@@ -15,6 +17,9 @@ const app = express();
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(pino);
 app.use(logger);
+
+app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')))
+app.use(express.static('public'));
 
 // API endpoint registration
 require('./apps/message')(app);
