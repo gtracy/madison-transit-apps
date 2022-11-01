@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>SMSMyBus - Get real-time arrival estimates for your bus</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A telephone application that lets you query real-time Madison bus arrival times.">
+    <meta name="author" content="greg tracy">
+    <meta name="keywords" content="Metro, Madison Metro, bus schedule, transit, madison, mymetro, mymetrobus, telephone, telephony, smsmybus, twilio">
+    <meta name="google-site-verification" content="H9cmKbLovDFqlBKn-lLv7ojvKOQ599AKKsJ7QgrM1fA" />
+
+    <!-- Le styles -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon.png">
+    <link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png">
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/#">SMSMyBus</a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="https://api.smsmybus.com/">Developers!</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="container-fluid">
+      <div class="hero-unit">
+          <h1>SMSMyBus</h1>
+            <p>A text messaging application that lets you find real time bus arrivals for the <a class="description-anchor" href=https://www.cityofmadison.com/metro/>Madison Metro</a>.</p>
+      </div>
+
+        <section id="resources">
+            <div class="container-fluid">
+              <div class="row-fluid">
+                <div class="span6">
+                  <h3>To find a specific route at a stop,</h3>
+                  <p>Send route + stop</p>
+                  <small>Example: Send <code>2 1101</code> to find the #2 bus at stop 1101:</small>
+                </div>
+                <div class="span6">
+                  <h3>To find all routes at a stop,</h3>
+                  <p>Send the stop number</p>
+                  <small>Example: Send <code>1101</code> to find all buses at stop 1101</small>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="container-fluid">
+              <div class="row-fluid">
+                <div class="span6">
+                  <h2>608.467.1603</h2>
+                  <p><i class="icon-heart"></i><strong> Give it a spin. The first few requests are free!</strong></p>
+                  <p><img src="/img/sms-sample-black-tiny.jpg" width="50%" class="img-polaroid"></p>
+                </div>
+                <div class="span6">
+                  <h2>$20 - Unlimited requests for a <red>year</red> <small>608.467.1603</small></h2>
+
+                  Include your mobile number when paying and start using the service by sending requests to 608.467.1603!
+                  <p><center>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="return" value="https://www.smsmybus.com/thanks.html"/>
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="DZQ5NE43NHB2U">
+                    <table>
+                    <tr><td><input type="hidden" name="on0" value="Your mobile phone number">Your mobile phone number</td></tr><tr><td><input type="text" name="os0" maxlength="200"></td></tr>
+                    </table>
+                    <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                    </form>
+                  </center></p>
+                  <p><center><a class="btn btn-success" href="/service-plan.html"><i class="icon-info-sign"> </i> Learn more</a></center></p>
+                </div>
+              </div>
+            </div>
+        </section>
+
+        <section id="api">
+            <hr>
+            <h1>Developers <small>Are you a developer interested in building your own bus app?</small></h1>
+            <p class="lead">The same tricks used for the text messaging tools are available in a programmable interface. The API gives you access to all of the Metro data - including the real-time arrival estimates. </p>
+            <p class="lead">Get started now! <a href="https://api.smsmybus.com">https://api.smsmybus.com</a></p>
+        </section>
+
+        <div class="navbar navbar-fixed-bottom">
+          <div class="navbar-inner">
+            <div class="container">
+                <ul class="nav">
+                  <li>© SMSMyBus 2010-2023</li>
+                </ul>
+            </div>
+          </div>
+        </div>
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <script src="/js/bootstrap-button.js"></script>
+
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-2237321-13']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+
+</body></html>
