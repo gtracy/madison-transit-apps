@@ -19,7 +19,6 @@ app.use(pino);
 app.use(logger);
 
 app.use(favicon(path.join(__dirname, 'public/img', 'favicon.ico')))
-app.use(express.static('public'));
 
 // API endpoint registration
 require('./apps/message')(app);
